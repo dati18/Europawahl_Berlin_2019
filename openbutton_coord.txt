@@ -1,0 +1,1 @@
+402,366,Reinickendorf;625,369,Pankow;733,531,Lichtenberg;868,562,Marzahn-Hellersdorf;940,808,Treptow-Köpenick;650,587,Friedrichshain-Kreuzberg;658,782,Neukölln;552,743,Tempelhof-Schöneberg;517,532,Mitte;368,614,Charlottenburg-Wilmersdorf;331,775,Steglitz-Zehlendorf;230,497,Spandau

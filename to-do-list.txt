@@ -1,0 +1,7 @@
+1. Parteienliste darstellen
+2. Ergebnis fuer ausgewaehlte Partei
+	- Stimme gesamt
+	- Stimme in bestimmten Wahlkreis
+3. Ergebnis fuer ein Bezirk darstellen
+	- Jede Partei
+	
