@@ -20,14 +20,14 @@ class Application():
         self.district_button.place(relx=0.75, rely=0.5)
         self.quit_button.place(relx=0.75, rely=0.75)
         self.district_window=None
+        self.party_window=None
     def open_map(self):
         self.district_window=districts()
     #def select_distric(self):
 
     def list_party(self):
-        top = Toplevel()
-        top.title("About this application...")
-        top.wm_geometry("%dx%d+%d+%d" % (1920, 1080, -10, 0))
+        self.party_window=party()
+
     def quit(self):
         root.destroy()
 class districts():
@@ -36,7 +36,6 @@ class districts():
         self.window.title("About this application...")
         self.canvas = Canvas(self.window, highlightthickness=0, bg="red", width=root.winfo_screenwidth(),
                         height=root.winfo_screenheight())
-        self.canvas.bind("<Button-1>", self.district_button)
         self.quit = Button(self.canvas, text="Quit", command=self.window.destroy)
         self.quit.place(relx=0.75, rely=0.8)
         self.scrollbar = Scrollbar(self.quit)
@@ -48,7 +47,8 @@ class districts():
         self.canvas.pack()
         self.window.wm_geometry("%dx%d+%d+%d" % (1920, 1080, -10, 0))
         self.button_containter=[]
-    def district_button(self, event):
+        self.district_button()
+    def district_button(self):
         print(root.winfo_pointerx(), ' ', root.winfo_pointery())
         if len(self.button_containter) != 0:
             self.button_containter.clear()
@@ -76,14 +76,45 @@ class districts():
             i.place(x=coord_list[index][0], y=coord_list[index][1])
             index+=1
 
+class party():
+    def __init__(self):
+        self.window = Toplevel()
+        self.window.title("About this application...")
+        self.frame=Frame(self.window, width=root.winfo_screenwidth()/2, height=root.winfo_screenheight(), bg='green')
+        self.frame.place(x=0, y=0)
+        self.canvas = Canvas(self.frame, highlightthickness=0, bg="red", width=root.winfo_screenwidth()/2,
+                             height=root.winfo_screenheight())
+        self.canvas_title=Label(self.canvas, text='Parteienliste')
+        self.canvas_title.grid(columnspan=5)
+        self.canvas.place(x=0,y=0)
+        self.window.wm_geometry("%dx%d+%d+%d" % (1920, 1080, -10, 0))
+        self.button_container = []
+        self.create_buttons()
+    def create_buttons(self):
+        index=0
+        row=1
+        column=0
+        for i in range(40):
+            button=Button(self.canvas)
+            self.button_container.append(button)
+        file = open('parties.txt', "r")
+        name=None
+        for i in file:
+            name=i.split(",")
+        name.sort()
+        for i in self.button_container:
+            i.config(text=name[index])
+            index+=1
+        for i in self.button_container:
+            i.grid(row=row, column=column)
+            row+=1
+            if row == 9:
+                column+=1
+                row=1
+    def show_party(self):
+        print('party opened')
 
 
-
-
-
-
-#class districts():
-    #def __init__(self):
 
 #class party():
     #def __init__(self):
